@@ -55,15 +55,6 @@ Namespace BuildSystemDefaultNamespace([[maybe_unused]] const Context& ctx) {
     ns.AddSearchPath("/odm/${LIB}", AsanPath::WITH_DATA_ASAN);
   }
 
-  ns.AddSearchPath("/vendor/${LIB}/arm", AsanPath::WITH_DATA_ASAN);
-  ns.AddSearchPath("/system/${LIB}/arm", AsanPath::WITH_DATA_ASAN);
-  ns.AddSearchPath("/vendor/${LIB}/arm/nb", AsanPath::WITH_DATA_ASAN);
-  ns.AddSearchPath("/system/${LIB}/arm/nb", AsanPath::WITH_DATA_ASAN);
-  ns.AddSearchPath("/vendor/${LIB}/arm64", AsanPath::WITH_DATA_ASAN);
-  ns.AddSearchPath("/system/${LIB}/arm64", AsanPath::WITH_DATA_ASAN);
-  ns.AddSearchPath("/vendor/${LIB}/arm64/nb", AsanPath::WITH_DATA_ASAN);
-  ns.AddSearchPath("/system/${LIB}/arm64/nb", AsanPath::WITH_DATA_ASAN);
-
   if (is_fully_treblelized) {
     // We can't have entire /system/${LIB} as permitted paths because doing so
     // makes it possible to load libs in /system/${LIB}/vndk* directories by
@@ -106,13 +97,7 @@ Namespace BuildSystemDefaultNamespace([[maybe_unused]] const Context& ctx) {
         "/system/${LIB}/bootstrap",
         "/vendor/${LIB}",
         "/vendor/${LIB}/arm",
-        "/vendor/${LIB}/arm/nb",
-        "/system/${LIB}/arm",
-        "/system/${LIB}/arm/nb",
-        "/vendor/${LIB}/arm64",
-        "/vendor/${LIB}/arm64/nb",
-        "/system/${LIB}/arm64",
-        "/system/${LIB}/arm64/nb"};
+        "/vendor/${LIB}/arm/nb"};
 
     for (const auto& path : permitted_paths) {
       ns.AddPermittedPath(path, AsanPath::SAME_PATH);
